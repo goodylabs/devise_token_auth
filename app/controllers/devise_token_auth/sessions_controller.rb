@@ -12,7 +12,7 @@ module DeviseTokenAuth
 
     def create
       # Check
-      field = (resource_params.keys.map(&:to_sym) & resource_class.authentication_keys).first
+      field = (resource_params.keys.map(&:to_sym) & resource_class.authentication_keys.map{|key, enforce| key}).first
 
       @resource = nil
       if field
