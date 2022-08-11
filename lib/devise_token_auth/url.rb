@@ -33,6 +33,7 @@ module DeviseTokenAuth::Url
     end
 
     def initialize(str)
+      return @regex = str if str.instance_of? Regexp
       @regex = self.class.parse_to_regex(str)
     end
 
