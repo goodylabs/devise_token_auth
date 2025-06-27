@@ -11,7 +11,7 @@ module DeviseTokenAuth
     end
 
     def create
-      if field = (resource_params.keys.map(&:to_sym) & resource_class.authentication_keys).first
+      if field = (resource_params.keys.map(&:to_sym) & resource_class.authentication_keys.map{|key, enforce| key}).first
         q_value = get_case_insensitive_field_from_resource_params(field)
 
         @resource = find_resource(field, q_value)
